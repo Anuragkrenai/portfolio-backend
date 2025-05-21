@@ -20,6 +20,14 @@ const SendEmail = async (req, res) => {
       html: `<p>Name: ${name}</p><p>Email: ${email}</p><p>Message: ${message}</p>`,
     });
 
+    const info2 = await transporter.sendMail({
+      from: process.env.SENDER_EMAIL || '',
+      to: email || '' ,
+      subject: "Connection Message",
+      text: "We got your Message and we will get back to you.",
+      html: `<p>Thank you for connecting ${name},</p><p>I will get back to you soon.</p>`,
+    });
+
     console.log("Message sent");
     res
       .status(200)
